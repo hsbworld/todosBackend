@@ -1,13 +1,9 @@
-package com.husqvarna.todoBackend.interfces;
+package com.husqvarna.todoBackend.interfaces;
 
-import com.husqvarna.todoBackend.exceptions.TodoNotFoundException;
 import com.husqvarna.todoBackend.models.Todos;
-import jakarta.transaction.Transactional;
-import jakarta.validation.ConstraintViolation;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public interface TodosService {
 

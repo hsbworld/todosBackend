@@ -2,7 +2,7 @@ package com.husqvarna.todoBackend.controllers;
 
 import com.husqvarna.todoBackend.dtos.TodosResponse;
 import com.husqvarna.todoBackend.models.Todos;
-import com.husqvarna.todoBackend.interfces.TodosService;
+import com.husqvarna.todoBackend.interfaces.TodosService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

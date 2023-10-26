@@ -1,4 +1,4 @@
-package com.husqvarna.todoBackend.interfces;
+package com.husqvarna.todoBackend.interfaces;
 
 import com.husqvarna.todoBackend.models.Todos;
 

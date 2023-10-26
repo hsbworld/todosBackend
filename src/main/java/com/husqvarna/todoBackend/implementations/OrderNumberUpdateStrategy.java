@@ -1,7 +1,7 @@
 package com.husqvarna.todoBackend.implementations;
 
 import com.husqvarna.todoBackend.exceptions.FailedValidationException;
-import com.husqvarna.todoBackend.interfces.TodosUpdateStrategy;
+import com.husqvarna.todoBackend.interfaces.TodosUpdateStrategy;
 import com.husqvarna.todoBackend.models.Todos;
 import org.springframework.stereotype.Component;
 

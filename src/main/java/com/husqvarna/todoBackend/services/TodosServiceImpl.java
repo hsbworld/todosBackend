@@ -2,8 +2,8 @@ package com.husqvarna.todoBackend.services;
 
 import com.husqvarna.todoBackend.exceptions.FailedValidationException;
 import com.husqvarna.todoBackend.exceptions.TodoNotFoundException;
-import com.husqvarna.todoBackend.interfces.TodosService;
-import com.husqvarna.todoBackend.interfces.TodosUpdateStrategy;
+import com.husqvarna.todoBackend.interfaces.TodosService;
+import com.husqvarna.todoBackend.interfaces.TodosUpdateStrategy;
 import com.husqvarna.todoBackend.models.Todos;
 import com.husqvarna.todoBackend.repositories.TodosRepository;
 import jakarta.transaction.Transactional;
