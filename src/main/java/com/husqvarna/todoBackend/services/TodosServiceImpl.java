@@ -2,29 +2,28 @@ package com.husqvarna.todoBackend.services;
 
 import com.husqvarna.todoBackend.exceptions.FailedValidationException;
 import com.husqvarna.todoBackend.exceptions.TodoNotFoundException;
+import com.husqvarna.todoBackend.interfces.TodosService;
 import com.husqvarna.todoBackend.interfces.TodosUpdateStrategy;
 import com.husqvarna.todoBackend.models.Todos;
 import com.husqvarna.todoBackend.repositories.TodosRepository;
 import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Valid;
 import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.*;
 
 @Service
-public class TodosService {
+public class TodosServiceImpl implements TodosService {
 
-    TodosRepository todosRepository;
-    Map<String, TodosUpdateStrategy> updateStrategies;
+    private final TodosRepository todosRepository;
+    private final Map<String, TodosUpdateStrategy> updateStrategies;
 
-    private Validator validator;
+    private final Validator validator;
 
     @Autowired
-    TodosService(TodosRepository todosRepository, List<TodosUpdateStrategy> strategies, Validator validator) {
+    public TodosServiceImpl(TodosRepository todosRepository, List<TodosUpdateStrategy> strategies, Validator validator) {
 
         this.todosRepository = todosRepository;
 
@@ -82,7 +81,7 @@ public class TodosService {
 
             Set<ConstraintViolation<Todos>> violations = validator.validate(todo);
 
-            if (!violations.isEmpty()){
+            if (!violations.isEmpty()) {
                 throw new FailedValidationException(400, violations.stream().findFirst().orElse(null).getMessage());
             }
 
@@ -92,7 +91,7 @@ public class TodosService {
     }
 
     @Transactional
-    public void deleteTodo (Long id) {
+    public void deleteTodo(Long id) {
 
         this.todosRepository.findById(id)
                 .orElseThrow(() -> new TodoNotFoundException(404, "Todo with the ID does not exist and hence not deleted"));
@@ -102,7 +101,7 @@ public class TodosService {
     }
 
     @Transactional
-    public  void deleteTodos () {
+    public void deleteTodos() {
         this.todosRepository.deleteAll();
     }
 

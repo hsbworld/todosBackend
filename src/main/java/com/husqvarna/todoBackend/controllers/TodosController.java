@@ -2,7 +2,7 @@ package com.husqvarna.todoBackend.controllers;
 
 import com.husqvarna.todoBackend.dtos.TodosResponse;
 import com.husqvarna.todoBackend.models.Todos;
-import com.husqvarna.todoBackend.services.TodosService;
+import com.husqvarna.todoBackend.interfces.TodosService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/todos")
 public class TodosController {
 
-    TodosService todosService;
+    private final TodosService todosService;
 
     @Autowired
     TodosController(TodosService todosService){
@@ -45,23 +45,13 @@ public class TodosController {
     @PatchMapping("/{id}")
     public ResponseEntity<TodosResponse> updateTodos (@PathVariable Long id, @Valid @RequestBody Map<String, Object> updates) {
 
+//      Strategy design pattern is used for update
         return ResponseEntity.ok(TodosResponse.createResponseObject(this.todosService.updateTodos(id, updates)));
 
     }
 
-//    @PatchMapping("/{id}")
-//    public ResponseEntity<TodosResponse> updateTodos (@PathVariable Long id, @Valid @RequestBody Map<String, Object> updates) {
-//
-//        System.out.println("111");
-//
-//        return null;
-//
-////        return ResponseEntity.ok(TodosResponse.createResponseObject(this.todosService.updateTodos(id, updates)));
-//
-//    }
-
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteTodo (@PathVariable Long id) {
+    public ResponseEntity<String> deleteTodo (@PathVariable Long id) {
 
         this.todosService.deleteTodo(id);
         return ResponseEntity.ok().body("");
@@ -69,7 +59,7 @@ public class TodosController {
     }
 
     @DeleteMapping
-    public ResponseEntity deleteTodos () {
+    public ResponseEntity<String> deleteTodos () {
 
         this.todosService.deleteTodos();
         return ResponseEntity.ok().body("");

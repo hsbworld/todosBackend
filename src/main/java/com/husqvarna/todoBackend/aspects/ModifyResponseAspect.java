@@ -17,6 +17,8 @@ import java.util.stream.Collectors;
 @Component
 public class ModifyResponseAspect {
 
+    // This class updates the URL attribute for all APIs
+
     private HttpServletRequest request;
 
     @Autowired
@@ -25,41 +27,50 @@ public class ModifyResponseAspect {
     }
 
     @Pointcut("execution(* com.husqvarna.todoBackend.controllers.*.getTodoById(**))")
-    private void getTodoController(){}
+    private void getTodoController() {
+    }
 
     @Pointcut("execution(* com.husqvarna.todoBackend.controllers.*.updateTodos(..))")
-    private void updateTodoController(){}
+    private void updateTodoController() {
+    }
 
     @Pointcut("execution(* com.husqvarna.todoBackend.controllers.*.getAllTodos(..))")
-    private void getAllTodosController(){}
+    private void getAllTodosController() {
+    }
 
     @Pointcut("execution(* com.husqvarna.todoBackend.controllers.*.createTodos(..))")
-    private void createTodoController(){}
+    private void createTodoController() {
+    }
 
-    @AfterReturning( pointcut = "getTodoController() || updateTodoController() || createTodoController()",
-            returning = "result" )
+    @AfterReturning(pointcut = "getTodoController() || updateTodoController() || createTodoController()",
+            returning = "result")
     public void addUrlProperty(JoinPoint jp, ResponseEntity<TodosResponse> result) {
 
         String[] uri = this.request.getRequestURI().split("/");
 
-        if (uri.length <= 2) {
-//          Create to do scenario - id is not available in URI, hence need to pass
-            result.getBody().setUrl(getUrl(result.getBody().getId()));
-        } else {
-            result.getBody().setUrl(getUrl());
-        }
+        if (result.getBody() != null) {
 
+            if (uri.length <= 2) {
+//              Create to do scenario - id is not available in URI, hence need to pass
+                result.getBody().setUrl(getUrl(result.getBody().getId()));
+            } else {
+                result.getBody().setUrl(getUrl());
+            }
+        }
     }
 
-    @AfterReturning( pointcut = "getAllTodosController()",
+    @AfterReturning(pointcut = "getAllTodosController()",
             returning = "result")
-    public void addUrlPropertyToAllItems(JoinPoint jp, ResponseEntity<List<TodosResponse>> result){
+    public void addUrlPropertyToAllItems(JoinPoint jp, ResponseEntity<List<TodosResponse>> result) {
 
-        result.getBody().stream().map(todosResponse -> {
-            todosResponse.setUrl(getUrl(todosResponse.getId()));
-            return todosResponse;
-        } ).collect(Collectors.toList());
+        if (result.getBody() != null) {
 
+            result.getBody().stream().map(todosResponse -> {
+                todosResponse.setUrl(getUrl(todosResponse.getId()));
+                return todosResponse;
+            }).collect(Collectors.toList());
+
+        }
     }
 
     private String getUrl(Long id) {
@@ -70,7 +81,7 @@ public class ModifyResponseAspect {
 
         String url = this.request.getScheme() + "://" + this.request.getServerName();
 
-        if (this.request.getServerPort() != 80 && this.request.getServerPort() != 443){
+        if (this.request.getServerPort() != 80 && this.request.getServerPort() != 443) {
             url = url + ":" + this.request.getServerPort();
         }
 

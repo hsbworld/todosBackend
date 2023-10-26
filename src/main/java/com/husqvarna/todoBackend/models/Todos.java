@@ -13,11 +13,8 @@ public class Todos {
     @NotBlank(message = "Title should have a value")
     String title;
 
-//    @NotNull(message = "Competed field should be provided")
-//    @Column(columnDefinition = "default 'False'")
     Boolean completed;
 
-//    @NotNull(message = "Order Number field should be provided")
     @Column(name="order_number")
     Integer order;
 

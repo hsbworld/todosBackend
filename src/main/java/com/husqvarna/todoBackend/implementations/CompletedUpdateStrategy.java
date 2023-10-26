@@ -4,7 +4,6 @@ import com.husqvarna.todoBackend.exceptions.FailedValidationException;
 import com.husqvarna.todoBackend.interfces.TodosUpdateStrategy;
 import com.husqvarna.todoBackend.models.Todos;
 import jakarta.validation.constraints.NotNull;
-import jdk.jfr.BooleanFlag;
 import org.springframework.stereotype.Component;
 
 @Component
