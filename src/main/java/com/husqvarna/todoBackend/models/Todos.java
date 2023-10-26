@@ -18,10 +18,10 @@ public class Todos {
     @NotBlank(message = "Title should have a value")
     String title;
 
-    @NotNull(message = "Competed field should be provided")
+//    @NotNull(message = "Competed field should be provided")
     Boolean completed;
 
-    @NotNull(message = "Order Number field should be provided")
+//    @NotNull(message = "Order Number field should be provided")
     Integer orderNumber;
 
     public Long getId() {
