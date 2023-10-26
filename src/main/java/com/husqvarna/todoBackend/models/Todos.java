@@ -18,7 +18,8 @@ public class Todos {
     Boolean completed;
 
 //    @NotNull(message = "Order Number field should be provided")
-    Integer orderNumber;
+    @Column(name="order_number")
+    Integer order;
 
     public Long getId() {
         return id;
@@ -44,12 +45,12 @@ public class Todos {
         this.completed = completed;
     }
 
-    public Integer getOrderNumber() {
-        return orderNumber;
+    public Integer getOrder() {
+        return order;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     @Override
@@ -58,7 +59,7 @@ public class Todos {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", completed=" + completed +
-                ", orderNumber=" + orderNumber +
+                ", orderNumber=" + order +
                 '}';
     }
 }

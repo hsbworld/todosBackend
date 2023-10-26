@@ -11,7 +11,7 @@ public class OrderNumberUpdateStrategy implements TodosUpdateStrategy {
     public void apply(Todos todo, Object value) {
 
         try {
-            todo.setOrderNumber((Integer) value);;
+            todo.setOrder((Integer) value);;
         }
         catch (Exception exception) {
             throw new FailedValidationException(400, "Invalid value provided for 'orderNumber' field");
@@ -21,6 +21,6 @@ public class OrderNumberUpdateStrategy implements TodosUpdateStrategy {
 
     @Override
     public String getFieldName() {
-        return "orderNumber";
+        return "order";
     }
 }

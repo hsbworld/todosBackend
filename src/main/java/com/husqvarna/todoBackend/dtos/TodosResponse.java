@@ -66,7 +66,7 @@ public class TodosResponse {
         return new TodosResponse(todo.getId(),
                                     todo.getTitle(),
                                     todo.getCompleted(),
-                                    todo.getOrderNumber() );
+                                    todo.getOrder() );
 
     }
 
