@@ -1,12 +1,7 @@
 package com.husqvarna.todoBackend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Todos {
@@ -19,6 +14,7 @@ public class Todos {
     String title;
 
 //    @NotNull(message = "Competed field should be provided")
+//    @Column(columnDefinition = "default 'False'")
     Boolean completed;
 
 //    @NotNull(message = "Order Number field should be provided")

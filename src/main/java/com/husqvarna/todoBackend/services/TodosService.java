@@ -40,6 +40,11 @@ public class TodosService {
 
     @Transactional
     public Todos createTodo(Todos todo) {
+
+        if (todo.getCompleted() == null) {
+            todo.setCompleted(false);
+        }
+
         return todosRepository.save(todo);
     }
 

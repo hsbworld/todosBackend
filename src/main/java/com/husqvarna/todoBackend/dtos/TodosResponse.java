@@ -1,7 +1,6 @@
 package com.husqvarna.todoBackend.dtos;
 
 import com.husqvarna.todoBackend.models.Todos;
-import jakarta.validation.constraints.NotBlank;
 
 public class TodosResponse {
 
@@ -11,7 +10,7 @@ public class TodosResponse {
 
     private Boolean completed;
 
-    private Integer orderNumber;
+    private Integer order;
 
     private String url;
 
@@ -39,12 +38,12 @@ public class TodosResponse {
         this.completed = completed;
     }
 
-    public Integer getOrderNumber() {
-        return orderNumber;
+    public Integer getOrder() {
+        return order;
     }
 
-    public void setOrderNumber(Integer orderNumber) {
-        this.orderNumber = orderNumber;
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     public String getUrl() {
@@ -55,11 +54,11 @@ public class TodosResponse {
         this.url = url;
     }
 
-    public TodosResponse(Long id, String title, Boolean completed, Integer orderNumber) {
+    public TodosResponse(Long id, String title, Boolean completed, Integer order) {
         this.id = id;
         this.title = title;
         this.completed = completed;
-        this.orderNumber = orderNumber;
+        this.order = order;
     }
 
     public static TodosResponse createResponseObject(Todos todo) {
@@ -77,7 +76,7 @@ public class TodosResponse {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", completed=" + completed +
-                ", orderNumber=" + orderNumber +
+                ", orderNumber=" + order +
                 ", url='" + url + '\'' +
                 '}';
     }
